@@ -1,28 +1,22 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <navigation-menu />
+    <cart-page />
+    <website-footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import NavigationMenu from "./components/NavigationMenu.vue";
+import Footer from "./components/Footer.vue";
+import Cart from "./components/Cart.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    "navigation-menu": NavigationMenu,
+    "website-footer": Footer,
+    "cart-page": Cart,
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
