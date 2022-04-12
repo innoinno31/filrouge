@@ -1,0 +1,40 @@
+{
+  "clients":[
+     {
+        "id":1,
+        "lastname":"DELATOUR",
+        "firstname":"Justine",
+        "email":"justine.delatour@hotmail.fr",
+        "phone":"0619229023",
+        "type":"Mariage",
+        "reservation_date":"06/04/2024",
+        "details":"Bonjour, j'aimerais que le photographe soit présent des prépratifs jusqu'au repas du soir. Nous avonns besoin également d'aide pour la mise en place du planning mariage avec les prestataires.",
+        "album_choice": [2,3,4,7,11],
+        "albumChoiceDone": true
+     },
+     {
+        "id":2,
+        "lastname":"PLAISTO",
+        "firstname":"Marc",
+        "email":"marc.gamer154@yahoo.fr",
+        "phone":"0689906754",
+        "type":"Séance bébé",
+        "reservation_date":"08/05/2022",
+        "details":"",
+        "album_choice": [3,1,7,12],
+        "albumChoiceDone": true
+     },
+     {
+      "id":3,
+      "lastname":"QUECHO",
+      "firstname":"Irina",
+      "email":"okcool154@yahoo.fr",
+      "phone":"0689906754",
+      "type":"Séance photo",
+      "reservation_date":"08/05/2023",
+      "details":"La séance photo peut se faire à mon domicile, il y aura mes enfants de 5 et 9 ans.",
+      "album_choice":[],
+      "albumChoiceDone": false
+   }
+  ]
+}
