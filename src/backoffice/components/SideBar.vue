@@ -22,8 +22,8 @@
         <router-link :to="{ name: 'album' }">Choix album</router-link>
       </div>
       <div class="flex ml-5 my-4 space-x-4 py-4">
-        <i class="material-icons text-white">analytics</i>
-        <router-link :to="{ name: 'statistics' }">Statistiques</router-link>
+        <i class="material-icons text-white">shopping_cart</i>
+        <router-link :to="{ name: 'productOrder' }">Commandes</router-link>
       </div>
     </div>
   </div>

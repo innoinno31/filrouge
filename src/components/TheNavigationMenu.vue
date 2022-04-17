@@ -30,7 +30,7 @@
       <router-link :to="{ name: 'home' }" class="mx-auto">
         <img
           class="mx-auto mt-2"
-          src="/images/RpSignBlanc.png"
+          src="/images/small_images/RpSignBlanc.png"
           alt=""
           width="180px"
         />

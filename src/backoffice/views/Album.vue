@@ -1,12 +1,11 @@
 <template>
-  <div id="mainCointainer" class="mx-auto h-screen w-100">
-    <div class="h-screen bg-gray-500 rounded py-5 shadow-xl">
+  <div id="mainCointainer" class="mx-auto w-100">
+    <div class="min-h-screen bg-gray-500 rounded py-5 shadow-xl">
       <div id="main" class="flex m-10">
         <div class="sidebar w-1/5">
           <SideBar />
         </div>
         <div class="w-4/5 p-10">
-          <!-- contenu de la page  -->
           <h1 class="text-center text-xl text-white my-5 uppercase">
             Choix des clients pour l'album <br />
             <span class="text-lg text-gray-100">
@@ -36,7 +35,7 @@
           </div>
           <div
             v-if="imageChoosed.length != 0"
-            class="flex justify-center space-x-5 content-center items-center"
+            class="flex flex-wrap justify-center space-x-5 content-center items-center"
           >
             <div v-for="(picture, key) in imageChoosed" :key="key">
               <div class="imageWrap">
@@ -129,8 +128,4 @@ export default {
   visibility: visible;
   opacity: 1;
 }
-
-/* .vforPictures:hover {
-    transform: rotateY(180deg);
-} */
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div class="mainCointainer h-screen pb-24">
     <div class="image max-h-fit h-full">
-      <!-- beginning of the main image -->
       <div class="h-2/3 w-screen">
         <div
           id="backgroundImage"
@@ -107,7 +106,7 @@ export default {
 
 <style scoped>
 #backgroundImage {
-  background-image: url("http://localhost:8080/small_images/handWedding.jpg");
+  background-image: url("/images/small_images/handWedding.jpg");
   background-attachment: relative;
   background-size: cover;
   background-repeat: no-repeat;

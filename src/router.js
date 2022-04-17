@@ -15,7 +15,7 @@ import CalendarPage from "./backoffice/views/Calendar.vue";
 import PortfolioAdminPage from "./backoffice/views/PortfolioAdmin.vue";
 import ReservationPage from "./backoffice/views/Reservation.vue";
 import AlbumPage from "./backoffice/views/Album.vue";
-import StatisticsPage from "./backoffice/views/Statistics.vue";
+import ProductOrder from "./backoffice/views/ProductOrder.vue";
 
 Vue.use(Router);
 
@@ -109,9 +109,9 @@ const mainRouter = new Router({
       },
     },
     {
-      path: "/statistics",
-      name: "statistics",
-      component: StatisticsPage,
+      path: "/productOrder",
+      name: "productOrder",
+      component: ProductOrder,
       meta: {
         hideNavAndFooter: true,
       },

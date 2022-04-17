@@ -2,7 +2,7 @@
   <div class="main h-screen w-screen relative">
     <div class="logoRP absolute w-screen flex top-6">
       <img
-        src="http://localhost:8080/images/RpSignBlanc.png"
+        src="/images/small_images/RpSignBlanc.png"
         class="w-72 mx-auto bg-black/10"
         alt=""
       />
@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 #backgroundImage {
-  background-image: url("http://localhost:8080/images/homePicture.jpg");
+  background-image: url("/images/full_size_images/homePicture.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

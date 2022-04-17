@@ -15,6 +15,7 @@ export default new Vuex.Store({
     slidePictures: {},
     imgPortfolioFullscreen: Boolean,
     reservationList: {},
+    orderList: {},
   },
 
   mutations: {
@@ -32,8 +33,10 @@ export default new Vuex.Store({
     },
 
     fetchReservation(state, reservation) {
-      // localStorage.setItem("phone", JSON.stringify(product));
       state.reservationList = reservation.clients;
+    },
+    fetchOrderList(state, orders) {
+      state.orderList = orders.orders;
     },
 
     initialiseStore(state) {
@@ -67,9 +70,7 @@ export default new Vuex.Store({
       }
     },
     removeCartProduct(state, index) {
-      console.log("ok");
       state.productsCart.splice(index, 1);
-      console.log(state.productsCart);
       localStorage.setItem(
         "productsInCart",
         JSON.stringify(state.productsCart)
@@ -88,7 +89,7 @@ export default new Vuex.Store({
 
   actions: {
     getProducts(context) {
-      return fetch("http://localhost:8080/products/products.js")
+      return fetch("/products/products.json")
         .then((response) => response.json())
         .then((data) => {
           context.commit("fetchPhonesData", data);
@@ -96,7 +97,7 @@ export default new Vuex.Store({
         .catch((err) => console.error(err));
     },
     getComments(context) {
-      return fetch("http://localhost:8080/comment/comments.js")
+      return fetch("/clients/comments.json")
         .then((response) => response.json())
         .then((data) => {
           context.commit("fetchComments", data);
@@ -104,7 +105,7 @@ export default new Vuex.Store({
         .catch((err) => console.error(err));
     },
     getSlidePictures(context) {
-      return fetch("http://localhost:8080/images/portfolio/portfolio.js")
+      return fetch("/images/portfolio.json")
         .then((response) => response.json())
         .then((data) => {
           context.commit("fetchSlidePictures", data);
@@ -113,11 +114,19 @@ export default new Vuex.Store({
     },
 
     getReservation(context) {
-      return fetch("http://localhost:8080/reservation/reservation.json")
+      return fetch("/clients/clients.json")
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           context.commit("fetchReservation", data);
+        })
+        .catch((err) => console.error(err));
+    },
+
+    getOrderList(context) {
+      return fetch("/products/orders.json")
+        .then((response) => response.json())
+        .then((data) => {
+          context.commit("fetchOrderList", data);
         })
         .catch((err) => console.error(err));
     },

@@ -14,32 +14,67 @@
         afficher en plein écran
       </button>
     </div>
-    <!-- Begining of the main image -->
     <div class="imgFocus relative" id="imgFocusDiv">
-      <i
+      <button
         v-if="imgInFocusId > 1"
         id="prevImageChevron"
-        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer absolute left-24 top-1/3"
+        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer z-10 absolute left-24 top-1/3"
         @click="previousImage"
-        >chevron_left</i
       >
+        chevron_left
+      </button>
+      <!-- fullscreen screen div-->
       <div class="w-2/3 h-2/3 mx-auto relative" id="focusMainImageDiv">
         <img :src="imgInFocus" alt="" id="focusMainImage" />
-        <!-- <i
-          @click="fullscreen()"
-          class="fullscreenIcon material-icons text-4xl text-white cursor-pointer"
-          >fullscreen</i
-        > -->
+        <div
+          v-if="isFullScreen"
+          class="absolute inset-x-0 bottom-0 h-16 bg-gray-700/25"
+        >
+          <div class="flex justify-around m-auto w-1/2">
+            <button
+              @click="playPictures()"
+              class="material-icons text-5xl text-gray-300 hover:text-gray-100 z-10"
+            >
+              play_circle
+            </button>
+            <button
+              @click="stopPlayPictures()"
+              class="material-icons text-5xl text-gray-300 hover:text-gray-100 z-10"
+            >
+              pause_circle
+            </button>
+            <button
+              v-if="imgInFocusId > 1"
+              id="prevImageChevron"
+              class="material-icons text-5xl text-gray-300 hover:text-gray-100 z-10"
+              @click="previousImage()"
+            >
+              chevron_left
+            </button>
+            <button
+              v-if="imgInFocusId < $store.state.slidePictures.length"
+              class="material-icons text-5xl text-gray-300 hover:text-gray-100 z-10"
+              @click="nextImage()"
+            >
+              chevron_right
+            </button>
+            <button
+              @click="leaveFullscreen()"
+              class="material-icons text-5xl text-gray-300 hover:text-gray-100 z-10"
+            >
+              fullscreen_exit
+            </button>
+          </div>
+        </div>
       </div>
-
       <i
         v-if="imgInFocusId < $store.state.slidePictures.length"
-        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer absolute right-24 top-1/3"
+        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer z-10 absolute right-24 top-1/3"
         @click="nextImage"
         >chevron_right</i
       >
     </div>
-    <!-- Begining of the small images slide -->
+    <!-- small images  -->
     <div class="imgMiniMenu overflow-hidden w-10/12 relative mx-auto">
       <div
         class="pb-24 gap-1 mx-auto relative py-5 flex"
@@ -62,8 +97,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <button @click="console">consoleClick</button> -->
   </div>
 </template>
 
@@ -73,10 +106,14 @@ export default {
 
   data() {
     return {
-      imgInFocus: "/small_images/brideCarRain.jpg",
+      imgInFocus: "/images/small_images/brideCarRain.jpg",
       imgInFocusId: 1,
       imgInFocusWidth: 600,
       isFullScreen: false,
+      playPicture: "",
+      pictureIsPlaying: false,
+      keydownArrows: "",
+      fullscreenEvent: "",
     };
   },
 
@@ -90,7 +127,7 @@ export default {
   },
   methods: {
     activateImage(e, picture) {
-      // check if isActive exist, and put the clicked image to isActive
+      // check if isActive exist, and put on the clicked image isActive
       var elems = document.querySelector(".isActive");
       if (elems !== null) {
         elems.classList.remove("isActive");
@@ -117,58 +154,88 @@ export default {
       this.imgInFocus = nextImage.picture;
       this.imgInFocusId = nextImage.id;
     },
+    playPictures() {
+      if (!this.pictureIsPlaying) {
+        this.pictureIsPlaying = true;
+        let numberOfimages = this.$store.state.slidePictures.length;
+        //we are playing the first asap if possible.
+        if (this.imgInFocusId < numberOfimages) {
+          this.nextImage();
+        }
+        //then we set an setinterval
+        this.playPicture = setInterval(() => {
+          if (this.imgInFocusId < numberOfimages) {
+            this.nextImage();
+          } else {
+            let firstImage = this.$store.state.slidePictures.find(
+              (picture) => picture.id === 1
+            );
+            this.imgInFocus = firstImage.picture;
+            this.imgInFocusId = firstImage.id;
+            this.nextImage();
+          }
+        }, 3000);
+      }
+    },
+    stopPlayPictures() {
+      clearInterval(this.playPicture);
+      this.playPicture = null;
+      this.pictureIsPlaying = false;
+    },
     fullscreen() {
-      var elem = document.getElementById("imgFocusDiv");
+      var elem = document.getElementById("focusMainImageDiv");
       elem.requestFullscreen();
+    },
+    leaveFullscreen() {
+      document.exitFullscreen();
     },
     addHandler: function () {
       //add event listen for arrow left and right / switch pictures
-      window.addEventListener("keydown", (e) => {
+      this.keydownArrows = (e) => {
         if (e.key === "ArrowLeft") {
           this.previousImage();
         } else if (e.key === "ArrowRight") {
           this.nextImage();
         }
-      });
-      document.addEventListener("fullscreenchange", function () {
-        //add event listen for full screen pictures styling
-
-        if (document.fullscreen) {
-          console.log("enter fullscreen");
-          document.getElementById("focusMainImage").id =
-            "focusMainImageFullscreen";
-          document.getElementById("focusMainImageDiv").id =
-            "focusMainImageDivFullscreen";
+      };
+      //add event listen for fullscreen
+      this.fullscreenEvent = () => {
+        if (document.fullscreenElement) {
+          this.isFullScreen = true;
         } else {
-          console.log("leave fullscreen");
-          document.getElementById("focusMainImageFullscreen").id =
-            "focusMainImage";
-          document.getElementById("focusMainImageDivFullscreen").id =
-            "focusMainImageDiv";
+          this.isFullScreen = false;
         }
-      });
+      };
+      window.addEventListener("keydown", this.keydownArrows);
+      document.addEventListener("fullscreenchange", this.fullscreenEvent);
     },
-
     removeHandler: function () {
-      window.removeEventListener("keydown", console.log("removedKD"));
-      window.removeEventListener("fullscreenchange", console.log("removedFS"));
+      window.removeEventListener("keydown", this.keydownArrows);
+      window.removeEventListener("fullscreenchange", this.fullscreenEvent);
     },
-    // console() {
-    //   console.log(this.countImages);
-    // },
   },
 
   watch: {
-    imgInFocusId: function () {
+    imgInFocusId() {
       // translate the slide image
-      var divToMove = document.getElementById("containerFullMiniImg");
+      let divToMove = document.getElementById("containerFullMiniImg");
       divToMove.style.transform =
         "translateX(" + -218 * (this.imgInFocusId - 1) + "px)";
       if (this.imgInFocusId.id === this.$store.state.slidePictures.length) {
         divToMove.style.transform = "translateX(" + 0 + "px)";
       }
     },
+    isFullScreen() {
+      let focusMainImage = document.getElementById("focusMainImage");
+      if (this.isFullScreen) {
+        focusMainImage.classList.add("fullscreenStyle");
+      } else {
+        focusMainImage.classList.remove("fullscreenStyle");
+        this.stopPlayPictures();
+      }
+    },
   },
+  computed: {},
 };
 </script>
 
@@ -205,11 +272,10 @@ export default {
   max-width: 900px;
   object-fit: contain;
 }
-#focusMainImageFullscreen,
-#focusMainImageDivFullscreen {
-  min-width: 90%;
-  max-height: 100vh;
-  margin: auto;
-  object-fit: contain;
+.fullscreenStyle {
+  max-height: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
 }
 </style>

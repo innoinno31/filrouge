@@ -15,12 +15,13 @@
           class="flex"
         >
           <div>
-            <input
+            <button
               type="button"
-              value="X"
               @click="toggleModalShow"
-              class="border-2 border-black px-0.5 absolute right-3 top-3"
-            />
+              class="material-icons px-0.5 absolute right-3 top-3"
+            >
+              close
+            </button>
           </div>
           <form id="clientInfoForm" class="align-self-center">
             <div class="clientInfo">
@@ -30,7 +31,7 @@
                 type="text"
                 value=""
                 id="clientName"
-                class="formVerif border border-black"
+                class="formVerif border border-gray-300 mt-1"
                 required
               />
             </div>
@@ -40,7 +41,7 @@
                 v-model="clientStreetAdress"
                 type="text"
                 id="clientStreet"
-                class="formVerif border border-black"
+                class="formVerif border border-gray-300 mt-1"
                 required
               />
             </div>
@@ -50,7 +51,7 @@
                 v-model="clientPostCode"
                 type="text"
                 id="postalCode"
-                class="formVerif border border-black"
+                class="formVerif border border-gray-300 mt-1"
                 required
               />
               <input
@@ -67,7 +68,7 @@
                 v-model="clientTown"
                 type="text"
                 id="clientTown"
-                class="formVerif border border-black"
+                class="formVerif border border-gray-300 mt-1"
                 required
               />
             </div>
@@ -76,7 +77,7 @@
               <input
                 v-model="clientEmail"
                 type="email"
-                class="border border-black"
+                class="border border-gray-300 mt-1"
                 id="clientMail"
                 placeholder="tél ou email obligatoire"
               />
@@ -95,7 +96,7 @@
                 type="number"
                 id="clientNumber"
                 placeholder="tél ou email obligatoire"
-                class="border border-black"
+                class="border border-gray-300 mt-1"
               />
               <input
                 type="text"
@@ -119,7 +120,7 @@
                 toggleModalShow();
                 clientInformationsShow = true;
               "
-              class="border-2 border-gray-700 rounded px-2 bg-gray-100 mt-4 hover:bg-gray-200 hover:border-black"
+              class="mt-4 py-1 border rounded border-black px-2 hover:bg-indigo-300 hover:text-white"
               type="button"
               id="sendClientInfo"
               form="clientInfoForm"
@@ -264,31 +265,31 @@
               </div>
               <hr class="mt-3" />
               <div class="flex-col flex mt-6 items-center">
-                <a href="/cartConfirm.html">
-                  <button
-                    type="button"
-                    class="border-1 border-gray-700 px-2 rounded w-fit"
-                  >
-                    <i class="material-icons">euro</i>
-                    REGLEMENT
-                  </button>
-                </a>
-                <a href="/cartConfirm.html">
-                  <button
-                    class="mt-2 border-1 border-gray-700 bg-blue-100 px-2 rounded w-fit"
-                  >
-                    <i class="material-icons">paypal</i>
-                    PAYPAL
-                  </button>
-                </a>
+                <button
+                  @click="notYetReadyOfCourse()"
+                  type="button"
+                  class="border-1 border-gray-700 px-2 rounded w-fit"
+                >
+                  <i class="material-icons">euro</i>
+                  REGLEMENT
+                </button>
+                <button
+                  @click="notYetReadyOfCourse()"
+                  class="mt-2 border-1 border-gray-700 bg-blue-100 px-2 rounded w-fit"
+                >
+                  <i class="material-icons">paypal</i>
+                  PAYPAL
+                </button>
               </div>
             </div>
             <div v-show="clientInformationsShow" class="mt-1 text-center">
-              <p>Vos informations:</p>
-              <p class="mt-1">{{ clientName }}</p>
-              <p class="mt-1">{{ clientStreetAdress }}</p>
+              <p class="font-medium text-lg">
+                Récapitulatif de vos informations:
+              </p>
+              <p class="mt-2">{{ clientName }}</p>
+              <p class="mt-2">{{ clientStreetAdress }}</p>
               <p>{{ clientPostCode }} {{ clientTown }}</p>
-              <p class="mt-1">{{ clientEmail }}</p>
+              <p class="mt-2">{{ clientEmail }}</p>
               <p>{{ clientPhoneNumber }}</p>
             </div>
           </aside>
@@ -299,8 +300,6 @@
 </template>
 
 <script>
-// import products from "@/products.js";
-
 export default {
   name: "PageCart",
 
@@ -352,7 +351,6 @@ export default {
     },
 
     delItem: function (index) {
-      // this.$store.state.productsCart.splice(index, 1);
       this.$store.commit("removeCartProduct", index);
       this.calculateCostWithoutShipment();
     },
@@ -372,6 +370,11 @@ export default {
 
     showProductPage: function (item) {
       this.$router.push({ name: "product", params: { itemID: item.id } });
+    },
+    notYetReadyOfCourse() {
+      alert(
+        "cette fonction n'est pas encore implémentée, mais si vous souhaitez faire un don voici mon adresse paypal : contact@franckrp-photographe.com , en vous remerciant"
+      );
     },
   },
 
@@ -434,12 +437,13 @@ th {
   background-color: rgb(243, 243, 243);
   padding: 1em;
   box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
-  padding: 50px 75px;
+  border-radius: 15px;
+  padding: 75px 150px;
 }
 
 #shipmentPopup input {
   display: block;
+  background-color: transparent;
 }
 
 .mainDiv {

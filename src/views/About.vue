@@ -1,9 +1,8 @@
 <template>
   <div class="main h-screen">
-    <!-- beginning of the main image -->
     <div class="mainImage relative">
       <img
-        src="http://localhost:8080/small_images/coupleHavingFun.jpg"
+        src="/images/small_images/coupleHavingFun.jpg"
         alt="photo RP photographie"
       />
       <div class="absolute top-0 left-0 mt-12 ml-12 text-xl w-1/4">
@@ -40,7 +39,7 @@
           class="rightSidePictureMe w-1/3 mt-8 h-1/2 flex flex-col justify-center"
         >
           <img
-            src="http://localhost:8080/small_images/ME.jpg"
+            src="/images/small_images/ME.jpg"
             alt="photo RIEU-PATEY Franck photographe toulouse"
           />
         </div>
@@ -49,7 +48,7 @@
         <p class="uppercase text-gray-600 my-5">quelques avis</p>
       </div>
 
-      <!--  CAROUSSEL AVIS -->
+      <!--  CAROUSSEL client's opinion -->
       <div v-for="comment in $store.state.fetchComments" :key="comment.id">
         <div
           class="divCommentDisplay opacity-50 text-center w-3/4 mx-auto mb-32"

@@ -75,9 +75,6 @@ export default {
     errorAddProductShow() {
       return this.$store.state.errorAddProduct;
     },
-    // currentRouteName() {
-    // return console.log(this.$route.name);
-    // }
   },
 };
 </script>

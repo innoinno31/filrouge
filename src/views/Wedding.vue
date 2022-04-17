@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    <!-- suite de la page -->
     <div>
       <h1
         class="mx-auto text-xl text-center py-5 leading-relaxed tracking-wide"
@@ -31,7 +30,7 @@
         photographique en vous accompagnant avant , pendant et après le jour J.
       </p>
       <img
-        src="http://localhost:8080/small_images/indianaStar.jpg"
+        src="/images/small_images/indianaStar.jpg"
         alt=""
         class="secondImage h-1/3"
       />
@@ -101,11 +100,6 @@
           </p>
         </li>
       </ul>
-      <!-- <img
-        src="http://localhost:8080/small_images/coupleGolf.jpg"
-        alt=""
-        class="thirdImage pb-3"
-      /> -->
       <div id="parralaxImage"></div>
 
       <p class="leading-relaxed tracking-wide pb-3 w-3/4 mx-auto">
@@ -126,24 +120,24 @@
       >
         <div class="flexTop flex space-x-2">
           <img
-            src="http://localhost:8080/small_images/photobooth1.jpg"
+            src="/images/small_images/photobooth1.jpg"
             alt=""
             class="imagesPhotobooth"
           />
           <img
-            src="http://localhost:8080/small_images/photobooth2.jpg"
+            src="/images/small_images/photobooth2.jpg"
             alt=""
             class="imagesPhotobooth"
           />
         </div>
         <div class="flexBottom flex space-x-2">
           <img
-            src="http://localhost:8080/small_images/photobooth3.jpg"
+            src="/images/small_images/photobooth3.jpg"
             alt=""
             class="imagesPhotobooth"
           />
           <img
-            src="http://localhost:8080/small_images/photobooth4.jpg"
+            src="/images/small_images/photobooth4.jpg"
             alt=""
             class="imagesPhotobooth"
           />
@@ -228,14 +222,14 @@ export default {
 
 <style scoped>
 .backgroundImageWeddingPage {
-  background-image: url("http://localhost:8080/small_images/BWchurch.jpg");
+  background-image: url("/images/small_images/BWchurch.jpg");
   background-attachment: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
 }
 #parralaxImage {
-  background-image: url("http://localhost:8080/small_images/coupleGolf.jpg");
+  background-image: url("/images/small_images/coupleGolf.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: contain;

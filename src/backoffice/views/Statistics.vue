@@ -6,7 +6,6 @@
           <SideBar />
         </div>
         <div class="w-4/5 p-10">
-          <!-- contenu de la page  -->
           <h1 class="text-center text-xl text-white my-5 uppercase">
             Page Statistiques
           </h1>
