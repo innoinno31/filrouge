@@ -117,7 +117,6 @@ export default {
   watch: {
     mobileDetected() {
       if (window.screen.width >= 500) {
-        console.log("mobile WATCH FIRED");
         return (this.mobileDetected = false);
       }
     },
