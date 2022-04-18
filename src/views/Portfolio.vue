@@ -8,17 +8,17 @@
       <h1 class="text-3xl">Gallerie photos</h1>
       <button
         type="button"
-        class="rounded absolute top-1/3 right-1/4 text-black border border-slate-700 px-2 py-1 text-sm bg-slate-100"
+        class="rounded lg:absolute top-1/3 right-1/4 text-black border border-slate-700 px-2 py-1 text-sm bg-slate-100"
         @click="fullscreen()"
       >
         afficher en plein écran
       </button>
     </div>
-    <div class="imgFocus relative" id="imgFocusDiv">
+    <div class="imgFocus relative flex" id="imgFocusDiv">
       <button
         v-if="imgInFocusId > 1"
         id="prevImageChevron"
-        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer z-10 absolute left-24 top-1/3"
+        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer z-10"
         @click="previousImage"
       >
         chevron_left
@@ -67,12 +67,14 @@
           </div>
         </div>
       </div>
-      <i
+      <button
         v-if="imgInFocusId < $store.state.slidePictures.length"
-        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer z-10 absolute right-24 top-1/3"
+        class="material-icons text-7xl text-gray-400 hover:text-gray-600 cursor-pointer z-10"
+        id="nextImageChevron"
         @click="nextImage"
-        >chevron_right</i
       >
+        chevron_right
+      </button>
     </div>
     <!-- small images  -->
     <div class="imgMiniMenu overflow-hidden w-10/12 relative mx-auto">
@@ -271,11 +273,55 @@ export default {
   margin: auto;
   max-width: 900px;
   object-fit: contain;
+  width: 100%;
 }
 .fullscreenStyle {
   max-height: 100% !important;
   max-width: 100% !important;
   min-width: 100% !important;
   min-height: 100% !important;
+}
+
+@media screen and (max-width: 1100px) {
+  .imagesSlide {
+    max-width: 109px;
+  }
+  #containerFullMiniImg {
+    --countImage: this.$store.state.slidePictures.length;
+    width: calc(var(--countImage) * 110px);
+    height: 83px;
+    transition: all ease 1s;
+  }
+  .vforPictures {
+    min-width: 130px;
+  }
+}
+@media screen and (max-width: 640px) {
+  #focusMainImage,
+  #focusMainImageDiv {
+    width: 80%;
+    min-height: 0;
+  }
+
+  .imagesSlide {
+    max-width: 52px;
+  }
+  #containerFullMiniImg {
+    --countImage: this.$store.state.slidePictures.length;
+    width: calc(var(--countImage) * 110px);
+    height: 55px;
+    transition: all ease 1s;
+  }
+  .vforPictures {
+    min-width: 55px;
+  }
+  #prevImageChevron {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  #nextImageChevron {
+    font-size: 3rem;
+    line-height: 1;
+  }
 }
 </style>

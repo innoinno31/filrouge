@@ -1,5 +1,5 @@
 <template>
-  <div class="maintContainer w-3/4 mx-auto text-center">
+  <div class="maintContainer lg:w-3/4 mx-auto text-center mb-10">
     <div
       v-if="errorAddProductShow"
       class="modalError fixed bg-gray-400 text-white rounded-full px-16 py-8 z-1 bottom-32 left-1/3 inset-x-46 mx-auto"
@@ -11,14 +11,14 @@
       Bienvenue sur notre page produits, ne resistez pas à la tentation !
     </h1>
 
-    <div class="productsContainer flex mt-6 flex-wrap">
+    <div class="productsContainer flex flex-col md:flex-row mt-6 flex-wrap">
       <div
-        class="w-1/3 px-10 my-6"
+        class="md:w-1/3 px-10 my-6"
         v-for="product in $store.state.products"
         :key="product.id"
       >
         <div class="flex">
-          <div class="w-1/2 flex">
+          <div class="lg:w-1/2 lg:flex">
             <img
               @click="showProductPage(product)"
               :src="product.picture"
@@ -35,7 +35,7 @@
               @click="addProductToCart(product)"
               class="mx-3 py-1 border rounded border-black px-1 hover:bg-indigo-300 hover:text-white"
             >
-              Add to cart
+              Ajouter
             </button>
           </div>
         </div>

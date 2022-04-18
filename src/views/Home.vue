@@ -9,7 +9,7 @@
     </div>
     <div class="w-screen absolute bottom-6 flex">
       <p
-        class="text-medium text-white font-medium bg-black/15 leading-relaxed text-center mx-auto"
+        class="sm:text-base text-sm text-white font-medium bg-black/15 leading-relaxed text-center mx-auto"
       >
         photographe basé à toulouse <br />
         email : contact@franckrp-photographe.com
@@ -31,7 +31,7 @@
 <script>
 export default {
   name: "HomePage",
-}
+};
 </script>
 
 <style scoped>
@@ -40,5 +40,6 @@ export default {
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: 25%;
 }
 </style>

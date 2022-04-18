@@ -7,7 +7,7 @@
           class="bg-none h-full w-full relative flex flex-col items-center"
         >
           <div
-            class="text-gray-800 flex absolute w-1/2 justify-between bottom-0 py-2 px-12 bg-gray-300/50 rounded-xl text-sm"
+            class="allTextPicture text-gray-800 flex absolute sm:w-1/2 bottom-0 py-2 px-12 bg-gray-300/50 rounded-xl text-xs lg:text-sm"
           >
             <div class="firstParagraph">
               <p>
@@ -18,11 +18,11 @@
               <p>31200 CUGNAUX</p>
             </div>
             <div class="secondParagraph">
-              <p>
+              <p class="textOnThePicture">
                 <i class="material-icons text-xl pr-2">phone</i>
                 0781704790
               </p>
-              <p>
+              <p class="textOnThePicture">
                 <i class="material-icons text-xl pr-2">mail</i>
                 contact@franckrp-photographe.com
               </p>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="flex w-1/2 justify-center mx-auto items-center">
-        <h1 class="text-3xl pr-6 py-6">Gardons le contact !</h1>
+        <h1 class="sm:text-3xl text-xl pr-6 py-6">Gardons le contact !</h1>
         <i
           class="material-icons animate-bounce"
           id="bounceIcon"
@@ -40,8 +40,10 @@
         >
       </div>
       <!-- Beginning of the contact form -->
-      <div class="contactForm w-2/3 flex flex-col mx-auto justify-center pb-24">
-        <p class="text-center py-2">
+      <div
+        class="contactForm sm:w-2/3 flex flex-col mx-auto justify-center pb-24"
+      >
+        <p class="sm:text-base text-sm text-center py-2">
           Merci de remplir le formulaire de contact ou de me contacter au
           07.81.70.47.90
         </p>
@@ -83,12 +85,14 @@
               <label for="message" class="w-full">Message *</label>
               <textarea type="textarea" rows="4" name="message" required />
             </div>
-            <button
-              type="button"
-              class="border border-pink-400 col-span-2 col-start-2 hover:bg-pink-200/50 px-3 py-2 rounded text-center bg-pink-100/50"
-            >
-              Envoyer
-            </button>
+            <div class="col-start-2 col-span-2">
+              <button
+                type="button"
+                class="border border-pink-400 hover:bg-pink-200/50 px-3 py-2 rounded text-center bg-pink-100/50"
+              >
+                Envoyer
+              </button>
+            </div>
             <p class="text-gray-400 col-start-2 col-span-9">
               Pensez à vérifier vos spams
             </p>
@@ -129,5 +133,20 @@ textarea:focus {
 
 label {
   color: rgb(107 114 128);
+}
+@media (max-width: 660px) {
+  .textOnThePicture {
+    text-align: start;
+  }
+  .allTextPicture {
+    display: block;
+  }
+}
+@media (max-width: 1065px) and (min-width: 660px) {
+  .textOnThePicture {
+    text-align: right;
+  }
+}
+@media (max-width: 500px) {
 }
 </style>

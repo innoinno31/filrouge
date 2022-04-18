@@ -147,12 +147,13 @@
                 :key="item.id"
               >
                 <div class="flex pb-2 justify-between mt-2">
-                  <div class="pt-2 mx-3 w-25 self-center">
+                  <div class="productImage pt-2 mx-3 w-25 self-center">
                     <img
                       @click="showProductPage(item)"
                       :src="item.picture"
                       alt=""
                       width="120px"
+                      class="productsImage"
                     />
                   </div>
                   <div class="pt-2 mx-3 uppercase text-xs">
@@ -293,6 +294,99 @@
               <p>{{ clientPhoneNumber }}</p>
             </div>
           </aside>
+        </div>
+        <!-- only for very small screens -->
+        <div class="verySmallScreen mt-4 h-100">
+          <div class="m-2 border-1 border-gray-300 bg-white p-3">
+            <h1 class="text-center">RECAPITULATIF</h1>
+            <div class="flex justify-between mt-4">
+              <p>Sous total</p>
+              <div>
+                <i class="material-icons">euro</i>
+                {{ costWithoutShipment }}
+              </div>
+            </div>
+            <hr class="mt-2 w-1/2 mx-auto" />
+            <div class="flex flex-col mt-4">
+              <p class="text-center">Choix de la livraison</p>
+              <div class="flex justify-around mt-2">
+                <div class="flex items-center">
+                  <input
+                    @change="
+                      toggleModalShow();
+                      calculateshipmentCostPrice('relais');
+                    "
+                    type="radio"
+                    id="relaisColis"
+                    name="deliveryChoice"
+                    value="relaisColis"
+                  />
+                  <label
+                    class="pointer-events-none text-center"
+                    for="relaisColis"
+                    >Relais colis<br />
+                    <i class="material-icons">euro</i>
+                    5
+                  </label>
+                </div>
+                <div class="flex items-center">
+                  <input
+                    @change="
+                      toggleModalShow();
+                      calculateshipmentCostPrice('home');
+                    "
+                    type="radio"
+                    id="deliveryHome"
+                    name="deliveryChoice"
+                    value="deliveryHome"
+                  />
+                  <label
+                    class="pointer-events-none text-center"
+                    for="deliveryHome"
+                    >Domicile <br />
+                    <i class="material-icons">euro</i>
+                    12
+                  </label>
+                </div>
+              </div>
+              <hr class="mt-3 w-1/2 mx-auto" />
+            </div>
+            <div class="flex mt-4 justify-between">
+              <p>Total</p>
+              <div>
+                <i class="material-icons">euro</i>
+                {{ totalCost }}
+              </div>
+            </div>
+            <hr class="mt-3" />
+            <div class="flex-col flex mt-6 items-center">
+              <button
+                @click="notYetReadyOfCourse()"
+                type="button"
+                class="border-1 border-gray-700 px-2 rounded w-fit"
+              >
+                <i class="material-icons">euro</i>
+                REGLEMENT
+              </button>
+              <button
+                @click="notYetReadyOfCourse()"
+                class="mt-2 border-1 border-gray-700 bg-blue-100 px-2 rounded w-fit"
+              >
+                <i class="material-icons">paypal</i>
+                PAYPAL
+              </button>
+            </div>
+          </div>
+          <div v-show="clientInformationsShow" class="mt-1 text-center">
+            <p class="font-medium text-lg">
+              Récapitulatif de vos informations:
+            </p>
+            <p class="mt-2">{{ clientName }}</p>
+            <p class="mt-2">{{ clientStreetAdress }}</p>
+            <p>{{ clientPostCode }} {{ clientTown }}</p>
+            <p class="mt-2">{{ clientEmail }}</p>
+            <p>{{ clientPhoneNumber }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -449,5 +543,49 @@ th {
 .mainDiv {
   filter: opacity(40%);
   pointer-events: none;
+}
+.RightSideInformation {
+  min-width: 180px;
+}
+.productsImage {
+  min-height: 120px;
+  min-width: 120px;
+}
+.verySmallScreen {
+  display: none;
+}
+@media (max-width: 1200px) {
+  #shipmentPopup {
+    padding: 15px 15px;
+  }
+}
+
+@media (max-width: 740px) {
+  .verySmallScreen {
+    display: block;
+  }
+  .RightSideInformation {
+    display: none;
+  }
+  .ProductListMainDiv {
+    width: 100%;
+  }
+}
+@media (min-width: 740px) {
+  .verySmallScreen {
+    display: none;
+  }
+  .RightSideInformation {
+    display: block;
+  }
+}
+@media (max-width: 450px) {
+  .productImage {
+    display: none;
+  }
+  #shipmentPopup {
+    margin: 50% auto;
+    left: 0%;
+  }
 }
 </style>

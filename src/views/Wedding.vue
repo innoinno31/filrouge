@@ -116,30 +116,30 @@
         votre mariage. Résultat et invités ravis garanti!
       </p>
       <div
-        class="imagePhotobooth w-5/12 mx-auto flex flex-col items-center py-5"
+        class="mx-auto flex flex-col sm:flex-row sm:justify-center items-center py-5"
       >
-        <div class="flexTop flex space-x-2">
+        <div>
           <img
             src="/images/small_images/photobooth1.jpg"
             alt=""
-            class="imagesPhotobooth"
+            class="imagesPhotobooth px-1"
           />
           <img
             src="/images/small_images/photobooth2.jpg"
             alt=""
-            class="imagesPhotobooth"
+            class="imagesPhotobooth px-1"
           />
         </div>
-        <div class="flexBottom flex space-x-2">
+        <div>
           <img
             src="/images/small_images/photobooth3.jpg"
             alt=""
-            class="imagesPhotobooth"
+            class="imagesPhotobooth px-1"
           />
           <img
             src="/images/small_images/photobooth4.jpg"
             alt=""
-            class="imagesPhotobooth"
+            class="imagesPhotobooth px-1"
           />
         </div>
       </div>
@@ -152,49 +152,51 @@
         </h1>
       </div>
       <img src="LOGO MARIAGES.NET" alt="" />
-      <div class="w-3/4 mx-auto">
+      <div class="sm:w-3/4 mx-auto">
         <div class="pb-6">
-          <form action="" class="gap-8 grid grid-cols-11 py-8">
-            <div class="col-span-4 col-start-2 flex flex-col">
+          <form action="" class="sm:gap-8 grid grid-cols-11 py-8 gap-2">
+            <div class="col-span-4 col-start-2 flex flex-col justify-end">
               <label for="nameInput">Nom * </label>
               <input type="text" name="nameInput" required />
             </div>
-            <div class="col-span-4 col-start-7 flex flex-col">
+            <div class="col-span-4 col-start-7 flex flex-col justify-end">
               <label for="partnerName">Nom de votre partenaire</label>
               <input type="text" name="partnerName" />
             </div>
-            <div class="col-span-4 col-start-2 flex flex-col">
+            <div class="col-span-4 col-start-2 flex flex-col justify-end">
               <label for="email">Email *</label>
               <input type="text" name="email" required />
             </div>
-            <div class="col-span-4 col-start-7 flex flex-col">
+            <div class="col-span-4 col-start-7 flex flex-col justify-end">
               <label for="phone">Téléphone *</label>
               <input type="text" name="phone" required />
             </div>
 
-            <div class="col-span-4 col-start-2 flex flex-col">
+            <div class="col-span-4 col-start-2 flex flex-col justify-end">
               <label for="weddingDate">Date du mariage</label>
               <input type="text" name="weddingDate" />
             </div>
-            <div class="col-span-4 col-start-7 flex flex-col">
+            <div class="col-span-4 col-start-7 flex flex-col justify-end">
               <label for="weddingLocation">Lieu du mariage</label>
               <input type="text" name="weddingLocation" />
             </div>
 
-            <div class="col-span-9 col-start-2 flex flex-col">
+            <div class="col-span-9 col-start-2 flex flex-col justify-end">
               <label for="subject">Titre du message *</label>
               <input type="text" name="subject" required />
             </div>
-            <div class="col-span-9 col-start-2 flex flex-col">
+            <div class="col-span-9 col-start-2 flex flex-col justify-end">
               <label for="message" class="w-full">Message *</label>
               <textarea type="textarea" rows="4" name="message" required />
             </div>
-            <button
-              type="button"
-              class="border border-pink-400 col-span-2 col-start-2 hover:bg-pink-200/50 px-3 py-2 rounded text-center bg-pink-100/50"
-            >
-              Envoyer
-            </button>
+            <div class="col-start-2">
+              <button
+                type="button"
+                class="border border-pink-400 col-span-2 col-start-2 hover:bg-pink-200/50 px-3 py-2 rounded text-center bg-pink-100/50"
+              >
+                Envoyer
+              </button>
+            </div>
             <p class="text-gray-400 col-start-2 col-span-9">
               Pensez à vérifier vos spams
             </p>
@@ -226,7 +228,8 @@ export default {
   background-attachment: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: center;
+  width: 100%;
 }
 #parralaxImage {
   background-image: url("/images/small_images/coupleGolf.jpg");
@@ -254,7 +257,7 @@ export default {
 }
 .imagesPhotobooth {
   width: 250px;
-  padding: 4px 0;
+  padding: 4px 4px;
 }
 input,
 textarea {
@@ -273,5 +276,10 @@ textarea:focus {
 
 label {
   color: rgb(107 114 128);
+}
+@media (max-width: 680px) {
+  #parralaxImage {
+    height: 20vh !important;
+  }
 }
 </style>
